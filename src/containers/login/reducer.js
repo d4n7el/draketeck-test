@@ -7,7 +7,6 @@ const defaultLogin = {
 };
 
 const login = (state = defaultLogin, action) => {
-  console.log({action});
   switch (action.type) {
     case LOGOUT:
       return defaultLogin;
