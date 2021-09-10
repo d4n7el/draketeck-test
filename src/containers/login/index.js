@@ -4,6 +4,15 @@ import { logInUser } from './actions'
 import { bindActionCreators } from 'redux';
 
 const Login = ({  logInUser, user  }) => {
+  
+  /*useEffect(() => {
+    logInUser({
+      accessToken: 123456789,
+      user: 'daniel'
+    })
+  }, [])*/
+
+  console.log(user)
   return (
     <h1>desde Login</h1>
   )
