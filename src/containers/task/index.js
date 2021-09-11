@@ -41,7 +41,11 @@ const Tasks = ({ accessToken }) => {
 
   return (
     <>
-      <Header reloadTasks={loadTasks} />
+      <Header
+        reloadTasks={loadTasks}
+        setShowEditTask={setShowEditTask}
+        showEditTask={showEditTask}
+      />
       {setInfoColums && (
         <Row center="xs" className="mt-10">
           {!showEditTask ? (

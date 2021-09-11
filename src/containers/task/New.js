@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, Radio, Select, InputNumber, Switch } from 'antd';
+import {
+  Form,
+  Input,
+  Button,
+  Radio,
+  Select,
+  InputNumber,
+  Switch,
+  Alert,
+} from 'antd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { create, update } from '../../api/task';
+import { Row, Col } from 'react-flexbox-grid';
 
 const { Option } = Select;
 
@@ -73,90 +83,112 @@ const NewTask = ({ reloadTasks, dataTask }) => {
   };
 
   return (
-    <Form labelCol={{ span: 5 }} wrapperCol={{ span: 14 }} layout="horizontal">
-      <Form.Item label="State">
-        <Radio.Group
-          value={formik.values.state}
-          onChange={(e) => {
-            formik.setFieldValue('state', e.target.value);
-          }}
-          style={{ display: 'flex', justifyContent: 'flex-start' }}
+    <Row>
+      <Col xs={12}>
+        <Form
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 14 }}
+          layout="horizontal"
         >
-          <Radio.Button value="Initial">Initial</Radio.Button>
-          <Radio.Button value="in progress">progress</Radio.Button>
-          <Radio.Button value="pending">pending</Radio.Button>
-          <Radio.Button value="complete">complete</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
-      <Form.Item label="Titile">
-        <Input
-          value={formik.values.title}
-          onChange={(e) => {
-            formik.setFieldValue('title', e.target.value);
-          }}
-        />
-      </Form.Item>
-      <Form.Item label="Description">
-        <Input
-          value={formik.values.description}
-          error={formik.errors.description}
-          onChange={(e) => {
-            formik.setFieldValue('description', e.target.value);
-          }}
-        />
-      </Form.Item>
-      <Form.Item
-        label="Responsible"
-        rules={[
-          {
-            required: true,
-            message: 'Please select your responsible',
-            type: 'array',
-          },
-        ]}
-      >
-        <Select
-          mode="multiple"
-          value={formik.values.responsible}
-          error={formik.errors.responsible}
-          onChange={(e) => {
-            formik.setFieldValue('responsible', e);
-          }}
-        >
-          <Option value="Daniel Zamora">Daniel Zamora</Option>
-          <Option value="Camilo Ortiz">Camilo Ortiz</Option>
-          <Option value="Juliana Bermúdez">Juliana Bermúdez</Option>
-        </Select>
-      </Form.Item>
-      <Form.Item label="Intensity">
-        <InputNumber
-          value={formik.values.hourlyIntensity}
-          error={formik.errors.hourlyIntensity}
-          onChange={(e) => {
-            formik.setFieldValue('hourlyIntensity', e);
-          }}
-          style={{ display: 'flex', justifyContent: 'flex-start' }}
-        />
-      </Form.Item>
-      <Form.Item label="Active" name="active">
-        <Switch
-          checked={formik.values.active}
-          onChange={(e) => {
-            formik.setFieldValue('active', e);
-          }}
-          style={{ display: 'flex', justifyContent: 'flex-start' }}
-        />
-      </Form.Item>
-      <Button
-        type="primary"
-        loading={loading}
-        onClick={() => {
-          formik.handleSubmit();
-        }}
-      >
-        {!dataTask ? 'save' : 'update'}
-      </Button>
-    </Form>
+          <Form.Item
+            label="State"
+            validateStatus={formik.errors.state ? 'error' : 'success'}
+          >
+            <Radio.Group
+              value={formik.values.state}
+              onChange={(e) => {
+                formik.setFieldValue('state', e.target.value);
+              }}
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
+            >
+              <Radio.Button value="Initial">Initial</Radio.Button>
+              <Radio.Button value="in progress">progress</Radio.Button>
+              <Radio.Button value="pending">pending</Radio.Button>
+              <Radio.Button value="complete">complete</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item
+            label="Titile"
+            validateStatus={formik.errors.title ? 'error' : 'success'}
+          >
+            <Input
+              value={formik.values.title}
+              onChange={(e) => {
+                formik.setFieldValue('title', e.target.value);
+              }}
+            />
+          </Form.Item>
+          <Form.Item
+            label="Description"
+            validateStatus={formik.errors.description ? 'error' : 'success'}
+          >
+            <Input
+              value={formik.values.description}
+              error={formik.errors.description}
+              onChange={(e) => {
+                formik.setFieldValue('description', e.target.value);
+              }}
+            />
+          </Form.Item>
+          <Form.Item
+            label="Responsible"
+            rules={[
+              {
+                required: true,
+                message: 'Please select your responsible',
+                type: 'array',
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              value={formik.values.responsible}
+              error={formik.errors.responsible}
+              onChange={(e) => {
+                formik.setFieldValue('responsible', e);
+              }}
+            >
+              <Option value="Daniel Zamora">Daniel Zamora</Option>
+              <Option value="Camilo Ortiz">Camilo Ortiz</Option>
+              <Option value="Juliana Bermúdez">Juliana Bermúdez</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item
+            label="Intensity"
+            validateStatus={formik.errors.hourlyIntensity ? 'error' : 'success'}
+          >
+            <InputNumber
+              value={formik.values.hourlyIntensity}
+              error={formik.errors.hourlyIntensity}
+              onChange={(e) => {
+                formik.setFieldValue('hourlyIntensity', e);
+              }}
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
+            />
+          </Form.Item>
+          <Form.Item label="Active" name="active">
+            <Switch
+              checked={formik.values.active}
+              onChange={(e) => {
+                formik.setFieldValue('active', e);
+              }}
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
+            />
+          </Form.Item>
+          <Button
+            type="primary"
+            loading={loading}
+            onClick={() => {
+              formik.handleSubmit();
+            }}
+          >
+            {!dataTask ? 'save' : 'update'}
+          </Button>
+        </Form>
+      </Col>
+
+      {console.log(formik)}
+    </Row>
   );
 };
 
