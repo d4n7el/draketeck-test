@@ -33,7 +33,7 @@ const Home = ({ accessToken, logOut }) => {
         <Row>
           {DATA_CARDS_WELCOME.map((card) => {
             return (
-              <Col xs={4} style={HomeStyle.contentCard}>
+              <Col xs={4} style={HomeStyle.contentCard} key={card.title}>
                 <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
                   <Meta
                     avatar={<Avatar src={card.avatar} />}
