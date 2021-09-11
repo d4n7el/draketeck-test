@@ -6,7 +6,12 @@
   font-weight: 900;
   margin: 0px;
 }
-.title-paage{
+.title-page{
   color: #025E73;
   font-size: 26px;
+  text-align: center;
+}
+
+.mt-10{
+  margin-top: 100px;
 }

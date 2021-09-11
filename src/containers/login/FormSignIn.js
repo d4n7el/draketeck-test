@@ -14,7 +14,7 @@ const FormSignIn = ({loading, formik}) => {
         <Col xs={4}>
           <Row>
             <Col xs={12} className="mt-1" >
-              <h1 className="title-paage">Iniciar sesión</h1>
+              <h1 className="title-page">Iniciar sesión</h1>
             </Col>
           </Row>
           <Space direction="vertical">
