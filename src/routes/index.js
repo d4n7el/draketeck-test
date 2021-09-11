@@ -1,15 +1,18 @@
 import { Route, Switch } from 'react-router-dom';
 
-import Login from '../views/Login';
+import Home from '../views/home';
+import Login from '../views/login';
 import Error404 from '../views/errors/Error404';
 import { connect } from 'react-redux';
 
 const Routes = ({user, accessToken}) => {
-  console.log(user);
   return (
     <Switch>
-      <Route exact path={'/login'} component={Login} />
-      <Route component={Error404} />
+      { accessToken ? (
+        <Route exact path={'/login'} component={Home} />
+      ):  
+        <Route component={Error404} /> 
+      }
     </Switch>
   );
 };
