@@ -10,6 +10,7 @@ import { DATA_CARDS_WELCOME } from './consts';
 import { Link } from 'react-router-dom';
 import { SendOutlined, LogoutOutlined } from '@ant-design/icons';
 import { logOut } from '../login/actions';
+import { Redirect } from 'react-router';
 
 import '../../theme/index.css';
 
@@ -19,7 +20,7 @@ const Home = ({ accessToken, logOut }) => {
   return (
     <Row>
       <Col xs={12}>
-        <h1 className="title-page mt-10">Bienvenido...</h1>
+        <h1 className="title-page mt-10">WELCOME...</h1>
         <Row center="xs">
           <CoffeeOutlined style={HomeStyle.iconWelcome} />
         </Row>
@@ -56,6 +57,7 @@ const Home = ({ accessToken, logOut }) => {
                           accessToken: null,
                           user: null,
                         });
+                        <Redirect to="/login" />;
                       }}
                     />
                   )}

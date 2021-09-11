@@ -6,7 +6,6 @@ import NewTask from './New';
 
 const Header = ({ reloadTasks }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [infoTask, setInfoTask] = useState({});
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -22,7 +21,7 @@ const Header = ({ reloadTasks }) => {
   return (
     <Row>
       <Col xs={12}>
-        <h1 className="title-page mt-10">Listado de tareas</h1>
+        <h1 className="title-page mt-10">Task list</h1>
         <Row>
           <Col xs={1} xsOffset={10}>
             <Button
@@ -42,13 +41,7 @@ const Header = ({ reloadTasks }) => {
         onCancel={handleCancel}
         footer={null}
       >
-        <NewTask
-          setInfoTask={setInfoTask}
-          modalVisible={isModalVisible}
-          modalOnOk={handleOk}
-          modalOnCancel={handleCancel}
-          reloadTasks={reloadTasks}
-        />
+        <NewTask reloadTasks={reloadTasks} />
       </Modal>
     </Row>
   );
