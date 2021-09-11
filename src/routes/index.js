@@ -9,10 +9,16 @@ const Routes = ({user, accessToken}) => {
   return (
     <Switch>
       { accessToken ? (
-        <Route exact path={'/login'} component={Home} />
+        <>
+         <Route exact path={'/login'} component={Home} />
+          <Route exact path={'/'} component={Home} />
+        </>
       ):  
-        <Route component={Error404} /> 
+        <>
+          <Route exact path={'/login'} component={Login} />
+        </>
       }
+      <Route component={Error404} /> 
     </Switch>
   );
 };
