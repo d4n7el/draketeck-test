@@ -20,3 +20,8 @@ export const deleteTask = async (id) => {
   const response = await deleteRequestApi(`${URL_CRUD_CRUD}/${id}`, {});
   return response;
 };
+
+export const update = async (id, formData) => {
+  const response = await putRequestApi(`${URL_CRUD_CRUD}/${id}`, formData, {});
+  return response;
+};

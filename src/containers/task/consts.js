@@ -1,10 +1,11 @@
-import { Tag, Space } from 'antd';
+import { Tag, Space, Button } from 'antd';
 import {
   CheckCircleOutlined,
   ExclamationCircleOutlined,
+  EditOutlined,
 } from '@ant-design/icons';
 
-export const COLUMNS_TASKS_TABLE = ({ actionDelete }) => [
+export const COLUMNS_TASKS_TABLE = ({ actionDelete, setShowEditTask }) => [
   {
     title: 'state',
     dataIndex: 'state',
@@ -16,9 +17,9 @@ export const COLUMNS_TASKS_TABLE = ({ actionDelete }) => [
     key: 'title',
   },
   {
-    title: 'descripcion',
-    dataIndex: 'descripcion',
-    key: 'descripcion',
+    title: 'description',
+    dataIndex: 'description',
+    key: 'description',
   },
   {
     title: 'responsible',
@@ -56,13 +57,31 @@ export const COLUMNS_TASKS_TABLE = ({ actionDelete }) => [
     key: 'delete',
     render: (text, record) => (
       <Space size="middle">
-        <a
+        <Button
+          danger
           onClick={() => {
             actionDelete(record._id);
           }}
         >
           Delete
-        </a>
+        </Button>
+      </Space>
+    ),
+  },
+  {
+    title: 'Update',
+    key: 'Update',
+    render: (text, record) => (
+      <Space size="middle">
+        <Button
+          type="primary"
+          shape="circle"
+          icon={<EditOutlined />}
+          size="large"
+          onClick={() => {
+            setShowEditTask(record._id);
+          }}
+        />
       </Space>
     ),
   },
