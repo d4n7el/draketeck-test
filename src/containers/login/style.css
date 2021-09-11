@@ -1,3 +1,9 @@
-.login-container{
-  height: 100vh;
+.login-container {
+  height: 90vh;
+}
+
+.login-container-content {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 50px;
+  border-radius: 10px;
 }

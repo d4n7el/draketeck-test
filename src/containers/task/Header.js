@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 import { Row, Col } from 'react-flexbox-grid';
-import { PlusOutlined, RollbackOutlined } from '@ant-design/icons';
+import { PlusOutlined, RollbackOutlined, HomeFilled } from '@ant-design/icons';
 import NewTask from './New';
 
 const Header = ({ reloadTasks, setShowEditTask, showEditTask }) => {
@@ -22,9 +22,9 @@ const Header = ({ reloadTasks, setShowEditTask, showEditTask }) => {
     <Row>
       <Col xs={12}>
         <h1 className="title-page mt-10">Task list</h1>
-        <Row>
-          <Col xs={1} xsOffset={2}>
-            {showEditTask && (
+        <Row center="xs">
+          <Col>
+            {showEditTask ? (
               <Button
                 type="primary"
                 shape="circle"
@@ -34,9 +34,19 @@ const Header = ({ reloadTasks, setShowEditTask, showEditTask }) => {
                   setShowEditTask(null);
                 }}
               />
+            ) : (
+              <Button
+                type="primary"
+                shape="circle"
+                icon={<HomeFilled />}
+                size="large"
+                onClick={() => {
+                  window.location.href = '/home';
+                }}
+              />
             )}
           </Col>
-          <Col xs={1} xsOffset={7}>
+          <Col className="ml-1">
             <Button
               type="primary"
               shape="circle"

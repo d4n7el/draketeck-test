@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  InputNumber,
-  Switch,
-  Alert,
-} from 'antd';
+import { Form, Input, Button, Radio, Select, InputNumber, Switch } from 'antd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { create, update } from '../../api/task';
@@ -63,8 +54,14 @@ const NewTask = ({ reloadTasks, dataTask }) => {
   };
 
   const loadForm = () => {
-    const { state, title, description, responsible, hourlyIntensity, active } =
-      dataTask;
+    const {
+      state = 'initial',
+      title,
+      description,
+      responsible,
+      hourlyIntensity,
+      active,
+    } = dataTask;
     formik.setFieldValue('state', state);
     formik.setFieldValue('title', title);
     formik.setFieldValue('description', description);
@@ -186,8 +183,6 @@ const NewTask = ({ reloadTasks, dataTask }) => {
           </Button>
         </Form>
       </Col>
-
-      {console.log(formik)}
     </Row>
   );
 };

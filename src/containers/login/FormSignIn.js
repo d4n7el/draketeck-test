@@ -11,7 +11,7 @@ const FormSignIn = ({ loading, formik }) => {
   return (
     <div className="container">
       <Row className="row login-container" center="xs" middle="xs">
-        <Col xs={4}>
+        <Col xs={4} className="login-container-content slide-in-top ">
           <Row>
             <Col xs={12} className="mt-1">
               <h1 className="title-page">Login</h1>
