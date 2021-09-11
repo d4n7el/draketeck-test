@@ -14,4 +14,8 @@ export const routesPrivate = [
     path: '/tasks',
     component: TaskView,
   },
+  {
+    path: '/',
+    component: Home,
+  },
 ];
